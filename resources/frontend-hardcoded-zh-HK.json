@@ -686,5 +686,73 @@
   [
     "children:\"Active\"}),renderRow",
     "children:\"活躍\"}),renderRow"
+  ],
+  [
+    "Auto-populate the model picker from the provider's model-list endpoint at launch. Turn off if the endpoint isn't reachable from your network, or to use a fixed list. When off, the model list below is required and must use full model IDs (aliases like sonnet/opus are resolved via discovery).",
+    "啟動時從提供者的模型清單端點自動填入模型選擇器。如果你的網絡無法連到該端點，或需要使用固定清單，請關閉此項。關閉後，下方的模型清單為必填，且必須使用完整模型 ID（sonnet/opus 等別名會透過探索解析）。"
+  ],
+  [
+    "Sent on every inference and model-discovery request (joined into the CLI's `ANTHROPIC_CUSTOM_HEADERS`).\\n\\nUse this for fleet-wide constants. For per-user or per-session values, have the **credential helper script** emit JSON with a `headers` field; those are merged over these static entries (helper wins on conflict).",
+    "會傳送到每個推論與模型探索請求（會合併進 CLI 的 `ANTHROPIC_CUSTOM_HEADERS`）。\\n\\n用於全員固定常數。對於按使用者或按工作階段變動的值，請讓**憑證輔助腳本**輸出帶有 `headers` 欄位的 JSON；這些值會覆蓋這裡的靜態項目（衝突時輔助腳本優先）。"
+  ],
+  [
+    "Claude runs the executable with no arguments and reads **stdout** (trimmed). Exit code must be `0`; any output on **stderr** is logged but ignored. **Stdout must contain only one of the formats below** (no banners, prompts, or log lines).\\n\\n**Output format** is either:\\n- a single bare token (the API key / bearer token), or\\n- a JSON object `{\"token\": \"...\", \"headers\": {\"Name\": \"Value\", ...}}` when per-request headers are needed (merged over **Custom inference headers**, helper wins on conflict)\\n\\nResult is cached for the TTL below. On TTL expiry the helper is re-invoked transparently (no user prompt, no relaunch).\\n\\n**Typical use:** a shell script that pulls from Keychain, 1Password CLI, or an internal secret broker. Example:\\n\\n`security find-generic-password -s anthropic-api -w`\\n\\nIf this field is set, static credential fields (API key, bearer token) are ignored. The helper always wins.",
+    "Claude 會以無參數方式執行該可執行檔，並讀取 **stdout**（去除首尾空白）。結束代碼必須為 `0`；**stderr** 上的任何輸出都會被記錄但會被忽略。**Stdout 只能包含以下格式之一**（不要有橫幅、提示或日誌行）。\\n\\n**輸出格式** 為：\\n- 一個裸 token（API 密鑰 / bearer token），或\\n- 一個 JSON 物件 `{\"token\": \"...\", \"headers\": {\"Name\": \"Value\", ...}}`，用於需要依請求設定請求標頭的情境（會覆蓋**自訂推論請求標頭**，衝突時輔助腳本優先）\\n\\n結果會依下方 TTL 快取。TTL 到期後會透明地重新呼叫輔助腳本（不會提示使用者，也不需要重新啟動）。\\n\\n**典型用途：** 從 Keychain、1Password CLI 或內部密鑰代理擷取憑證的 shell 腳本。範例：\\n\\n`security find-generic-password -s anthropic-api -w`\\n\\n設定此欄位後，靜態憑證欄位（API 密鑰、bearer token）會被忽略。輔助腳本永遠優先。"
+  ],
+  [
+    "Only affects **tool calls**. Inference and MCP traffic are covered by their own allowlists elsewhere.\\n\\nWhen unset, only the inference endpoint is reachable from the sandbox; the agent's package installs (pip/npm) and web fetches will fail with a 403.\\n\\nAccepts exact hostnames (`api.github.com`), wildcards (`*.corp.com` matches one subdomain level), and `*` to allow all.\\n\\nWildcards don't cross schemes. `*.corp.com` matches `docs.corp.com` but not `corp.com` itself; add both if you need the apex.\\n\\nIP literals and localhost always resolve regardless of this list; this is a public-egress filter, not a sandbox.\\n\\nHosts you add here also need to be open on your network firewall. See **Egress Requirements** for the full allowlist.",
+    "僅影響**工具呼叫**。推論和 MCP 流量由各自的允許清單另外控制。\\n\\n未設定時，沙箱只能連到推論端點；代理程式的套件安裝（pip/npm）和網頁擷取會因 403 失敗。\\n\\n接受精確主機名稱（`api.github.com`）、萬用字元（`*.corp.com` 符合一層子網域）以及用於允許全部的 `*`。\\n\\n萬用字元不會跨越層級。`*.corp.com` 符合 `docs.corp.com`，但不符合 `corp.com` 本身；如果需要根網域，請兩者都新增。\\n\\nIP 字面值和 localhost 一律可解析，不受此清單影響；這是公開輸出過濾器，不是沙箱。\\n\\n你在這裡新增的主機還需要在網絡防火牆中開放。完整允許清單請參閱**輸出要求**。"
+  ],
+  [
+    "\\\"Essential\\\" means the signals Anthropic needs to keep your deployment working: **crash stacks**, **startup failure reasons**, and **version/OS metadata**. No prompts, completions, file contents, or identifiers beyond a random install ID.\\n\\n**What you lose when this is on:** when a Cowork build hits a bug that only reproduces on your OS version or locale, Anthropic can't see it unless a user manually reports. Fixes ship slower.\\n\\n**Why this is discouraged, not blocked:** some air-gapped environments require zero outbound telemetry as a matter of policy. The switch exists for them. If you don't have that constraint, leave it off.",
+    "「必要」指 Anthropic 維持你的部署正常運作所需的信號：**崩潰堆疊**、**啟動失敗原因**和**版本/OS 中繼資料**。不包含提示、補全、檔案內容，也不包含隨機安裝 ID 以外的識別碼。\\n\\n**啟用此項會失去什麼：** 當 Cowork 建置遇到只在你的 OS 版本或地區設定下重現的 bug 時，除非使用者手動回報，否則 Anthropic 看不到。修正發布會更慢。\\n\\n**為什麼不建議但不阻止：** 一些隔離網絡環境因政策要求零輸出遙測。此開關就是為它們準備的。如果你沒有這個限制，請保持關閉。"
+  ],
+  [
+    "\"Nonessential\" covers two things: **product-usage analytics** (which features get used, navigation patterns; no prompts or completions) and the **Send** action in Help → Generate Diagnostic Report. Turning this on stops both.\\n\\nDestination for both: `claude.ai`. Already listed under Egress Requirements → Nonessential telemetry.",
+    "「非必要」包括兩類內容：**產品使用分析**（使用了哪些功能、導航模式；不含提示或補全）以及「幫助 → 產生診斷報告」中的**傳送**操作。啟用此項會同時停止兩者。\\n\\n兩者的目標位址均為：`claude.ai`。已列在「輸出要求 → 非必要遙測」下。"
+  ],
+  [
+    "defaultMessage:\"Configure third-party inference\"",
+    "defaultMessage:\"設定第三方推論\""
+  ],
+  [
+    "defaultMessage:\"View as JSON\"",
+    "defaultMessage:\"以 JSON 格式檢視\""
+  ],
+  [
+    "defaultMessage:\"Form view\"",
+    "defaultMessage:\"表單檢視\""
+  ],
+  [
+    "defaultMessage:\"Full config\"",
+    "defaultMessage:\"完整設定\""
+  ],
+  [
+    "defaultMessage:\"Partial — not a valid file on its own\"",
+    "defaultMessage:\"部分設定 - 不能單獨作為有效檔案\""
+  ],
+  [
+    "defaultMessage:\"Apply locally\"",
+    "defaultMessage:\"套用到本機\""
+  ],
+  [
+    "defaultMessage:\"Export\",id:\"SVwJTM5AmL\"",
+    "defaultMessage:\"匯出\",id:\"SVwJTM5AmL\""
+  ],
+  [
+    "defaultMessage:\"Relaunch Claude?\"",
+    "defaultMessage:\"重新啟動 Claude？\""
+  ],
+  [
+    "defaultMessage:\"Configuration was written to disk. Claude needs to relaunch to use this provider.\"",
+    "defaultMessage:\"設定已寫入磁碟。Claude 需要重新啟動才能使用此提供者。\""
+  ],
+  [
+    "defaultMessage:\"Later\"",
+    "defaultMessage:\"稍後\""
+  ],
+  [
+    "defaultMessage:\"Relaunch now\"",
+    "defaultMessage:\"立即重新啟動\""
   ]
 ]
