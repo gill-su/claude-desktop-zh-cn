@@ -741,7 +741,7 @@
   ],
   [
     "children:\"Run tasks on a schedule or whenever you need them. Type /schedule in any existing task to set one up.\"",
-    "children:\"按排程或在需要時執行任務。在任何現有任務中輸入 /schedule 即可設定。\""
+    "children:\"按排程執行任務，或在需要時執行任務。在任一現有任務中輸入 /schedule 即可設定。\""
   ],
   [
     "label:\"Create with Claude\"",
@@ -869,7 +869,7 @@
   ],
   [
     "\"Nonessential\" covers two things: **product-usage analytics** (which features get used, navigation patterns; no prompts or completions) and the **Send** action in Help → Generate Diagnostic Report. Turning this on stops both.\\n\\nDestination for both: `claude.ai`. Already listed under Egress Requirements → Nonessential telemetry.",
-    "「非必要」包括兩類內容：**產品使用分析**（使用了哪些功能、導航模式；不含提示或補全）以及「幫助 → 產生診斷報告」中的**傳送**操作。啟用此項會同時停止兩者。\\n\\n兩者的目標位址均為：`claude.ai`。已列在「輸出要求 → 非必要診斷資料」下。"
+    "「Nonessential」包括兩項：**product-usage analytics**（會使用哪些功能、導航模式；不含提示或補全）以及 Help → Generate Diagnostic Report 中的 **Send** 操作。開啟此項會同時停止兩者。\\n\\n兩者的目標位址都是：`claude.ai`。已列在 Egress Requirements → Nonessential telemetry 下。"
   ],
   [
     "defaultMessage:\"Configure third-party inference\"",
@@ -1042,6 +1042,102 @@
   [
     "Delete…",
     "刪除..."
+  ],
+  [
+    "BOOTSTRAP CONFIG URL",
+    "引導設定 URL"
+  ],
+  [
+    "Bootstrap config URL",
+    "引導設定 URL"
+  ],
+  [
+    "Point this configuration at a bootstrap URL to have your organization manage these settings remotely.",
+    "將此設定指向一個引導 URL，讓你的組織遙距管理這些設定。"
+  ],
+  [
+    "HTTPS endpoint that returns a per-user JSON config overlay. Values from the response override local settings and become read-only.",
+    "傳回每位用户 JSON 設定覆寫層的 HTTPS 端點。回應中的值會覆寫本機設定並變為唯讀。"
+  ],
+  [
+    "Tasks",
+    "任務"
+  ],
+  [
+    "Archive 1 task? You can find it in the Archived tab.",
+    "要歸檔 1 個任務嗎？你可以在「已封存」分頁中找到它。"
+  ],
+  [
+    "message:F?`Archive ${j.items.length} ${1===j.items.length?y.noun:y.nouns}? You can find ${1===j.items.length?\"it\":\"them\"} in the Archived tab.`",
+    "message:F?`歸檔 ${j.items.length} 個${1===j.items.length?y.noun:y.nouns}？你可以在「已封存」分頁中找到${1===j.items.length?\"它\":\"它們\"}。`"
+  ],
+  [
+    "Cancel",
+    "取消"
+  ],
+  [
+    "children:\"Cancel\"",
+    "children:\"取消\""
+  ],
+  [
+    "label:\"Local\"",
+    "label:\"本機\""
+  ],
+  [
+    "label:\"Cloud\"",
+    "label:\"雲端\""
+  ],
+  [
+    "children:\"Local\"",
+    "children:\"本機\""
+  ],
+  [
+    "children:\"Cloud\"",
+    "children:\"雲端\""
+  ],
+  [
+    "More ideas",
+    "更多想法"
+  ],
+  [
+    "Mark done",
+    "標記為完成"
+  ],
+  [
+    "Mark undone",
+    "標記為未完成"
+  ],
+  [
+    "Scheduled",
+    "排程任務"
+  ],
+  [
+    "Allow Auto mode",
+    "允許 Auto mode"
+  ],
+  [
+    "Offer Auto mode in the Cowork and Code permission selectors. Claude decides which actions need approval.",
+    "在 Cowork 和 Code 權限選擇器中提供 Auto mode。Claude 會決定哪些操作需要核准。"
+  ],
+  [
+    "When enabled, users can select Auto mode (Code tab) / Act without asking (Cowork tab). Claude runs a safety classifier on each action and only prompts for approval on actions it judges risky.",
+    "啟用後，用户可以選擇 Auto mode（Code 分頁）/ Act without asking（Cowork 分頁）。Claude 會對每個操作執行安全分類器，並且只在判定為有風險的操作上要求核准。"
+  ],
+  [
+    "When enabled, users can select **Auto mode** (Code tab) / **Act without asking** (Cowork tab). Claude runs a safety classifier on each action and only prompts for approval on actions it judges risky.\\n\\nRequires a model that supports the classifier (Claude 4.6+). Older models show the option greyed out.\\n\\nThis is the permissive opposite of the per-tool `ask` policy above; both may be set.",
+    "啟用後，用户可以選擇 **Auto mode**（Code 分頁）/ **Act without asking**（Cowork 分頁）。Claude 會對每個操作執行安全分類器，並且只在判定為有風險的操作上要求核准。\\n\\n需要支援該分類器的模型（Claude 4.6+）。較舊模型會將此選項顯示為灰色。\\n\\n這是上方按工具設定的 `ask` 策略的寬鬆反向選項；兩者可以同時設定。"
+  ],
+  [
+    "Requires a model that supports the classifier (Claude 4.6+). Older models show the option greyed out.",
+    "需要支援該分類器的模型（Claude 4.6+）。較舊模型會將此選項顯示為灰色。"
+  ],
+  [
+    "This is the permissive opposite of the per-tool ask policy above; both may be set.",
+    "這是上方按工具設定的 ask 策略的寬鬆反向選項；兩者可以同時設定。"
+  ],
+  [
+    "\"Nonessential\" covers two things: **product-usage analytics** (which features get used, navigation patterns; no prompts or completions) and the **Send** action in Help \\u2192 Generate Diagnostic Report. Turning this on stops both.\\n\\nDestination for both: `claude.ai`. Already listed under Egress Requirements \\u2192 Nonessential telemetry.",
+    "「Nonessential」包括兩項：**product-usage analytics**（會使用哪些功能、導航模式；不含提示或補全）以及 Help → Generate Diagnostic Report 中的 **Send** 操作。開啟此項會同時停止兩者。\\n\\n兩者的目標位址都是：`claude.ai`。已列在 Egress Requirements → Nonessential telemetry 下。"
   ],
   [
     "Speed",
