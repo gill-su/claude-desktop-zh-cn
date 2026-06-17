@@ -1601,19 +1601,19 @@
   ],
   [
     "Allow Auto mode",
-    "允许 Auto mode"
+    "允许自动模式"
   ],
   [
     "Offer Auto mode in the Cowork and Code permission selectors. Claude decides which actions need approval.",
-    "在 Cowork 和 Code 权限选择器中提供 Auto mode。Claude 会决定哪些操作需要批准。"
+    "在 Cowork 和 Code 权限选择器中提供自动模式。Claude 会决定哪些操作需要批准。"
   ],
   [
     "When enabled, users can select Auto mode (Code tab) / Act without asking (Cowork tab). Claude runs a safety classifier on each action and only prompts for approval on actions it judges risky.",
-    "启用后，用户可以选择 Auto mode（Code 标签页）/ Act without asking（Cowork 标签页）。Claude 会对每个操作运行安全分类器，并且只在判断为有风险的操作上请求批准。"
+    "启用后，用户可以选择自动模式（Code 标签页）/ 无需询问即可操作（Cowork 标签页）。Claude 会对每个操作运行安全分类器，并且只在判断为有风险的操作上请求批准。"
   ],
   [
     "When enabled, users can select **Auto mode** (Code tab) / **Act without asking** (Cowork tab). Claude runs a safety classifier on each action and only prompts for approval on actions it judges risky.\\n\\nRequires a model that supports the classifier (Claude 4.6+). Older models show the option greyed out.\\n\\nThis is the permissive opposite of the per-tool `ask` policy above; both may be set.",
-    "启用后，用户可以选择 **Auto mode**（Code 标签页）/ **Act without asking**（Cowork 标签页）。Claude 会对每个操作运行安全分类器，并且只在判断为有风险的操作上请求批准。\\n\\n需要支持该分类器的模型（Claude 4.6+）。较旧模型会将此选项显示为灰色。\\n\\n这是上方按工具设置的 `ask` 策略的宽松反向选项；两者可以同时设置。"
+    "启用后，用户可以选择 **自动模式**（Code 标签页）/ **无需询问即可操作**（Cowork 标签页）。Claude 会对每个操作运行安全分类器，并且只在判断为有风险的操作上请求批准。\\n\\n需要支持该分类器的模型（Claude 4.6+）。较旧模型会将此选项显示为灰色。\\n\\n这是上方按工具设置的 `ask` 策略的宽松反向选项；两者可以同时设置。"
   ],
   [
     "Requires a model that supports the classifier (Claude 4.6+). Older models show the option greyed out.",
